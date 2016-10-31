@@ -1,6 +1,5 @@
-from currency import Currency
-from currency_converter import CurrencyConverter
-from nose.tools import assert_raises
+from currency import *
+from currency_converter import *
 
 
 def test_equals_eight_dollars():
@@ -44,7 +43,18 @@ def test_symbols_EUR():
     assert a == b
 
 def test_basic_currency_converter():
-    assert currency_converter.convert(Currency(1, 'USD'), 'USD') == Currency(1, 'USD')
+    a = Currency('USD', 8)
+    assert CurrencyConverter.convert(a, a.code, 'USD') == Currency('USD', 8)
+
+def test_EUR_converter():
+    a = Currency('USD', 1)
+    to = 'EUR'
+    assert CurrencyConverter.convert(a, a.code, 'EUR') == Currency('EUR', .91)
+
+def test_GBP_converter():
+    a = Currency('USD', 1)
+    to = 'GBP'
+    assert CurrencyConverter.convert(a, a.code, 'GBP') == Currency('GBP', .82)
 
 
 
