@@ -47,15 +47,19 @@ def test_basic_currency_converter():
     assert CurrencyConverter.convert(a, a.code, 'USD') == Currency('USD', 8)
 
 def test_EUR_converter():
-    a = Currency('USD', 1)
+    a = Currency('USD', 2)
     to = 'EUR'
-    assert CurrencyConverter.convert(a, a.code, 'EUR') == Currency('EUR', .91)
+    assert CurrencyConverter.convert(a, a.code, 'EUR') == Currency('EUR', 1.82)
 
 def test_GBP_converter():
-    a = Currency('USD', 1)
+    a = Currency('USD', 2)
     to = 'GBP'
-    assert CurrencyConverter.convert(a, a.code, 'GBP') == Currency('GBP', .82)
+    assert CurrencyConverter.convert(a, a.code, 'GBP') == Currency('GBP', 1.64)
 
+def test_unknown_code_exception():
+    a = Currency('USD', 2)
+    to = 'CAN'
+    assert CurrencyConverter.convert(a, a.code, 'CAN') == Currency('CAN', 2)
 
 
 
