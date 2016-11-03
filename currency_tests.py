@@ -1,5 +1,6 @@
 from currency import *
 from currency_converter import *
+from nose.tools import raises
 
 
 def test_equals_eight_dollars():
@@ -56,6 +57,7 @@ def test_GBP_converter():
     to = 'GBP'
     assert CurrencyConverter.convert(a, a.code, 'GBP') == Currency('GBP', 1.64)
 
+@raises(UnknownCurrencyError)
 def test_unknown_code_exception():
     a = Currency('USD', 2)
     to = 'CAN'
