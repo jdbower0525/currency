@@ -1,7 +1,6 @@
 
-class Exceptions():
-    def CurrencyTypeError(self, other):
-        print("Must add currencies of the same type")
+class CurrencyTypeError(Exception):
+    pass
 
 class Currency():
     def __init__(self, code, amount = 0):
@@ -23,20 +22,20 @@ class Currency():
         if self.code == other.code and self.amount == other.amount:
             return True
         else:
-            pass
+            return False
 
     def __add__(self, other):
         if self.code == other.code:
             return Currency(self.code, self.amount + other.amount)
         else:
-            raise Exception("CurrencyTypeError")
+            raise CurrencyTypeError()
             pass
 
     def __sub__(self, other):
         if self.code == other.code:
             return Currency(self.code, self.amount - other.amount)
         else:
-            raise Exception("CurrencyTypeError")
+            raise CurrencyTypeError()
             pass
 
     def __mul__(self, other):

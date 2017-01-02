@@ -1,5 +1,5 @@
 from currency import *
-from currency_converter import *
+from currency_converter import CurrencyConverter, UnknownCurrencyError
 from nose.tools import raises
 
 
@@ -58,18 +58,15 @@ def test_GBP_converter():
     assert CurrencyConverter.convert(a, a.code, 'GBP') == Currency('GBP', 1.64)
 
 @raises(UnknownCurrencyError)
-def test_unknown_code_exception():
-    a = Currency('USD', 2)
-    to = 'CAN'
-    assert CurrencyConverter.convert(a, a.code, 'CAN') == Currency('CAN', 2)
+def test_unknown_code():
+    usd_object = Currency('$5')
+    CurrencyConverter.convert(usd_object, usd_object.code, 'CAN')
 
-
-
-
-# def test_currency_code_exception():
-#     a = Currency('USD', 9)
-#     b = Currency('CAN', 8)
-#     assert_raises(CurrencyTypeError, add, 'USD', 'CAN')
+@raises(CurrencyTypeError)
+def test_currency_code_exception():
+    a = Currency('USD', 9)
+    b = Currency('CAN', 8)
+    a + b
 
 if __name__ == '__main__':
     unittest.main()
