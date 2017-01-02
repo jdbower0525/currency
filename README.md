@@ -1,4 +1,4 @@
-#README FILE
+#CURRENCY CONVERTER
 
 The purpose of these programs is to test the use of multiple modules in a program, as well as writing test functions for the program.
 

@@ -29,14 +29,12 @@ class Currency():
             return Currency(self.code, self.amount + other.amount)
         else:
             raise CurrencyTypeError()
-            pass
 
     def __sub__(self, other):
         if self.code == other.code:
             return Currency(self.code, self.amount - other.amount)
         else:
             raise CurrencyTypeError()
-            pass
 
     def __mul__(self, other):
         if isinstance(other, int) or isinstance(other, float):
